@@ -1,0 +1,14 @@
+1. Open 0ALL and comment out 2INSTALL and 3WEBSERVER
+2. Run ./0ALL
+3. Comment out 1SETUP and uncomment 2 and 3
+
+# things that could be added
+
+# http://articles.slicehost.com/2010/6/30/understanding-logrotate-on-ubuntu-part-1
+# http://articles.slicehost.com/2010/6/30/understanding-logrotate-on-ubuntu-part-2
+
+
+# regexs that could be used
+# exp_internal 1
+# expect -indices -re "lines:\r\n(.*)\r\nAfter" { set passenger_conf $expect_out(1,string) }
+
