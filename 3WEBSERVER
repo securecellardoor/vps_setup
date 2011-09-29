@@ -1,0 +1,52 @@
+#! /bin/bash
+
+## set the password
+PASS=$1
+
+## copy the scripts over
+ssh -p 30000 -t ben@103.1.184.46 "mkdir -p /home/ben/ALL/webserver"
+scp -rP 30000 ./ALL/webserver/* ben@103.1.184.46:/home/ben/ALL/webserver/.
+
+
+#
+# http://articles.slicehost.com/2010/5/19/installing-apache-on-ubuntu
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/setup $PASS"
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/add_mods $PASS"
+
+
+#
+# http://articles.slicehost.com/2008/5/1/ubuntu-hardy-mod_rails-installation
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/passenger $PASS"
+tput sgr0 # reset the terminal colors
+
+#
+# http://articles.slicehost.com/2010/5/19/apache-configuration-files-on-ubuntu
+# http://articles.slicehost.com/2010/5/19/configuring-the-apache-mpm-on-ubuntu
+# http://articles.slicehost.com/2010/5/19/apache-configuration-on-ubuntu-part-1
+# http://articles.slicehost.com/2010/5/19/apache-configuration-on-ubuntu-part-2 # DIDN'T SET the ServerName
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/configure $PASS"
+
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/github $PASS"
+
+
+#
+# https://knowledge.rapidssl.com/support/ssl-certificate-support/index?page=content&id=SO6411
+# https://knowledge.rapidssl.com/support/ssl-certificate-support/index?page=content&id=SO6252
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/ssl $PASS"
+
+
+#
+# http://articles.slicehost.com/2010/5/19/apache-virtual-hosts-on-ubuntu-part-1
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/webserver/virtual-hosts $PASS"

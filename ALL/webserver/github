@@ -1,0 +1,18 @@
+#!/usr/bin/expect --
+
+set timeout 6
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn ssh-keygen -t rsa -C "23inhouse@gmail.com"
+expect ":" { send "\r" }
+expect ":" { send "\r" }
+expect ":" { send "\r" }
+expect "The key fingerprint is"
+
+spawn ssh github.com
+expect "(yes/no)" { send "yes\r" }
+expect "successfully authenticated"
+
+spawn cat cat /home/ben/.ssh/id_rsa.pub
+expect "23inhouse@gmail.com"

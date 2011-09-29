@@ -1,0 +1,7 @@
+#! /bin/sh
+
+PASS=$1
+
+createdb -O scd -E UTF8 secure_cellar_door_staging
+createdb -O scd -E UTF8 secure_cellar_door_demo
+createdb -O scd -E UTF8 secure_cellar_door

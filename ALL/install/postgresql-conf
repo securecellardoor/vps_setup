@@ -1,0 +1,27 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S sed -i -e 's/#track_counts = on/track_counts = on/' /etc/postgresql/8.4/main/postgresql.conf
+grep 'track_counts =' /etc/postgresql/8.4/main/postgresql.conf
+
+echo $PASS | sudo -S sed -i -e 's/#autovacuum = on/autovacuum = on/' /etc/postgresql/8.4/main/postgresql.conf
+grep 'autovacuum =' /etc/postgresql/8.4/main/postgresql.conf
+
+#
+# http://articles.slicehost.com/2009/5/7/postgresql-creating-and-deleting-roles
+#
+
+echo $PASS | sudo -S su postgres -c /home/ben/ALL/install/postgresql-users
+
+#
+# http://articles.slicehost.com/2009/5/7/postgresql-creating-and-dropping-databases
+#
+
+echo $PASS | sudo -S su postgres -c /home/ben/ALL/install/postgresql-dbs
+
+
+cp /home/ben/ALL/install/pgpass /home/ben/.pgpass
+chmod 0600 ~/.pgpass
+
+echo $PASS | sudo -S /etc/init.d/postgresql-8.4 restart

@@ -1,0 +1,9 @@
+#! /bin/sh
+
+PASS=$1
+
+echo "gem: --no-ri --no-rdoc" | cat > /home/ben/.gemrc
+
+bash --login -c "gem install bundler passenger"
+
+bash --login -c "rvm use 1.9.2@scd --create && gem install bundler"

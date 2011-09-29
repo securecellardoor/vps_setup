@@ -1,0 +1,34 @@
+#! /bin/bash
+
+## set the password
+PASS=$1
+
+
+#
+# http://articles.slicehost.com/2010/4/30/ubuntu-lucid-setup-part-1
+#
+
+## Add a new user
+scp ~/.ssh/id_rsa.pub vps@103.1.184.46:/home/vps/id_rsa.pub
+ssh -t vps@103.1.184.46 "sudo adduser ben && sudo /usr/sbin/usermod -a -G admin ben && cd /home/ben/ && sudo mkdir -p /home/ben/.ssh && sudo mv ~/id_rsa.pub /home/ben/.ssh/authorized_keys && sudo chown -R ben:ben .ssh && sudo chmod 700 .ssh && sudo chmod 600 .ssh/authorized_keys && sudo mkdir -p /home/ben/ALL/setup && sudo chown -R ben:ben /home/ben/ALL && sudo aptitude install expect"
+
+## copy the scripts over
+scp ./ALL/setup/* ben@103.1.184.46:/home/ben/ALL/setup/.
+
+## SSH config
+ssh -t ben@103.1.184.46 "/home/ben/ALL/setup/ssh_config $PASS"
+
+## iptables
+ssh -t ben@103.1.184.46 "/home/ben/ALL/setup/iptables $PASS" # PLEASE CHECK THESE DETAILS.
+
+#
+# http://articles.slicehost.com/2010/4/30/ubuntu-lucid-setup-part-2
+#
+
+## OS check
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/setup/os_check $PASS"
+
+# Update
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/setup/update $PASS"
+
+

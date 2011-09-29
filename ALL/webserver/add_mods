@@ -1,0 +1,5 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S a2enmod headers rewrite ssl

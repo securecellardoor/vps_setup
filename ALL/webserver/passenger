@@ -1,0 +1,18 @@
+#!/usr/bin/expect --
+
+set timeout 600
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn bash --login -c "passenger-install-apache2-module"
+expect "Press Enter to continue" { send "\r" }
+expect "Press ENTER to continue" { send "\r" }
+
+spawn sh -c "echo '$PASS' | sudo -S cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.backup.`date +%Y%m%d%H%M%S`"
+interact
+spawn sh -c "touch /home/ben/ALL/webserver/passenger.conf"
+interact
+spawn bash --login -c "passenger-install-apache2-module --snippet > /home/ben/ALL/webserver/passenger.conf"
+interact
+spawn sh -c "echo '$PASS' | sudo -S sh -c \"cat /home/ben/ALL/webserver/passenger.conf >> /etc/apache2/apache2.conf\""
+interact

@@ -1,0 +1,6 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S cp /home/ben/ALL/webserver/certs/securecellardoor.com.au.crt /etc/ssl/certs/securecellardoor.com.au.crt
+echo $PASS | sudo -S cp /home/ben/ALL/webserver/certs/securecellardoor.com.au.crt /etc/ssl/private/securecellardoor.com.au.key

@@ -1,0 +1,90 @@
+<VirtualHost *:80>
+  ServerName securecellardoor.com.au
+  ServerAlias *.securecellardoor.com.au
+
+  RackEnv production
+
+  DocumentRoot /home/ben/public_html/secure_cellar_door/current/public
+  <Directory /home/ben/public_html/secure_cellar_door/current/public>
+     AllowOverride all
+     Options -MultiViews
+  </Directory>
+
+  RewriteEngine On
+  
+  # send all to ssl
+  ReWriteCond %{SERVER_PORT} !^443$
+  RewriteRule ^/(.*) https://%{HTTP_HOST}/$1 [NC,R,L]
+
+  # Custom log file locations
+  ErrorLog  /home/ben/public_html/secure_cellar_door/shared/log/error.log
+  CustomLog /home/ben/public_html/secure_cellar_door/shared/log/access.log combined
+
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName securecellardoor.com.au
+  ServerAlias *.securecellardoor.com.au
+
+  RailsEnv production
+
+  DocumentRoot /home/ben/public_html/secure_cellar_door/current/public
+  <Directory /home/ben/public_html/secure_cellar_door/current/public>
+     AllowOverride all
+     Options -MultiViews
+  </Directory>
+
+  RewriteEngine On
+
+  # Googlejuice
+  RewriteCond %{HTTP_HOST} ^wattlefarm\.securecellardoor\.com\.au
+  RewriteRule ^/([0-9]{4}-.+) https://securecellardoor.com.au/wattlefarm/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^goodcatholicgirl\.securecellardoor\.com\.au
+  RewriteRule ^/([0-9]{4}-.+)$ https://securecellardoor.com.au/goodcatholicgirl/$1 [R=301,L]
+
+  # send www to non-www
+  RewriteCond %{HTTP_HOST} ^www\.securecellardoor\.com\.au
+  RewriteRule (.*) https://securecellardoor.com.au$1 [R=301,L]
+
+  #
+  # Redirect all cached pages to the cache folder
+  #
+
+  # subdomain-less index page
+  RewriteCond %{REQUEST_METHOD} GET [NC]
+  RewriteCond %{HTTP_HOST} ^securecellardoor\.com\.au$ [NC]
+  RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI}index.html -f
+  RewriteRule ^([^.]*)$ /cache/$1index.html [L]
+
+  # subdomained index pages
+  RewriteCond %{REQUEST_METHOD} GET [NC]
+  RewriteCond %{HTTP_HOST} ^([^.]*)\.securecellardoor\.com\.au$ [NC]
+  RewriteCond %{DOCUMENT_ROOT}/cache/%1/%{REQUEST_URI}index.html -f
+  RewriteRule ^([^.]*)$ /cache/%1/$1index.html [L]
+
+  # subdomain-less pages
+  RewriteCond %{REQUEST_METHOD} GET [NC]
+  RewriteCond %{HTTP_HOST} ^securecellardoor\.com\.au$ [NC]
+  RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html -f
+  RewriteRule ^([^.]*)$ /cache/$1.html [L]
+
+  # subdomained pages
+  RewriteCond %{REQUEST_METHOD} GET [NC]
+  RewriteCond %{HTTP_HOST} ^([^.]*)\.securecellardoor\.com\.au$ [NC]
+  RewriteCond %{DOCUMENT_ROOT}/cache/%1/%{REQUEST_URI}.html -f
+  RewriteRule ^([^.]*)$ /cache/%1/$1.html [L]
+
+  # Custom log file locations
+  ErrorLog  /home/ben/public_html/secure_cellar_door/shared/log/error.log
+  CustomLog /home/ben/public_html/secure_cellar_door/shared/log/access.log combined
+
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/securecellardoor.com.au.crt
+  SSLCertificateKeyFile /etc/ssl/private/securecellardoor.com.au.key
+
+  # SSLVerifyClient require
+
+  RequestHeader set X_FORWARDED_PROTO 'https'
+
+</VirtualHost>
+

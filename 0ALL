@@ -1,0 +1,8 @@
+#! /bin/bash
+
+## set the password
+PASS=$1
+
+sh -c "./1SETUP $PASS"
+# sh -c "./2INSTALL $PASS"
+# sh -c "./3WEBSERVER $PASS"

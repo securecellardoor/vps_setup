@@ -1,0 +1,14 @@
+#! /bin/sh
+
+PASS=$1
+
+## install rvm
+curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer && chmod +x rvm-installer && ./rvm-installer --version latest && rm rvm-installer
+
+## install ruby 1.9.2
+/home/ben/.rvm/bin/rvm install 1.9.2
+
+## set the default ruby
+/home/ben/.rvm/bin/rvm use 1.9.2 --default
+
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile

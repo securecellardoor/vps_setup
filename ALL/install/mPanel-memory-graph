@@ -1,0 +1,8 @@
+#! /bin/sh
+
+PASS=$1
+
+wget http://content.MammothVPS.com.au/media/5131/mpanel-memory-graph.tar.gz
+echo $PASS | sudo -S  tar xfv mpanel-memory-graph.tar.gz -C /
+rm mpanel-memory-graph.tar.gz
+

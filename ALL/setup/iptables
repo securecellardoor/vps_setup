@@ -1,0 +1,17 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S /sbin/iptables -F
+echo $PASS | sudo -S cp /home/ben/ALL/setup/iptables.up.rules /etc/iptables.up.rules
+echo $PASS | sudo -S /sbin/iptables-restore < /etc/iptables.up.rules
+echo $PASS | sudo -S /sbin/iptables -L
+
+echo $PASS | sudo -S touch /etc/network/if-pre-up.d/iptables
+echo $PASS | sudo -S sudo sh -c "echo '$a\
+#!/bin/sh
+/sbin/iptables-restore < /etc/iptables.up.rules
+' >> /etc/network/if-pre-up.d/iptables"
+echo $PASS | sudo -S chmod +x /etc/network/if-pre-up.d/iptables
+
+echo $PASS | sudo -S /etc/init.d/ssh reload

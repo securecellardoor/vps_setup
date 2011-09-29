@@ -1,0 +1,14 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup.`date +%Y%m%d%H%M%S`
+
+echo $PASS | sudo -S sed -i -e 's/Port 22/Port 30000/' /etc/ssh/sshd_config
+echo $PASS | sudo -S sed -i -e 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+echo $PASS | sudo -S sed -i -e '$a\
+UseDNS no
+' /etc/ssh/sshd_config
+echo $PASS | sudo -S sed -i -e '$a\
+AllowUsers ben
+' /etc/ssh/sshd_config

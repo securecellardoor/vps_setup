@@ -1,0 +1,17 @@
+#! /bin/sh
+
+PASS=$1
+
+mkdir -p /home/ben/public_html
+mkdir -p /home/ben/public_html/secure_cellar_door
+mkdir -p /home/ben/public_html/secure_cellar_door_demo
+mkdir -p /home/ben/public_html/secure_cellar_door_staging
+
+echo $PASS | sudo -S chmod -R a+rX /home/ben/public_html
+echo $PASS | sudo -S chmod a+rx /home/ben
+echo $PASS | sudo -S cp /home/ben/ALL/webserver/virtual_hosts/* /etc/apache2/sites-available/.
+
+echo $PASS | sudo -S a2ensite scd.23inhouse.com
+echo $PASS | sudo -S a2ensite securecellardoor.com
+echo $PASS | sudo -S a2ensite securecellardoor.com.au
+bash --login -c "echo $PASS | sudo -S /etc/init.d/apache2 reload"

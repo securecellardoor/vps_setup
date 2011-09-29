@@ -1,0 +1,25 @@
+#!/usr/bin/expect --
+
+set timeout 600
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn cat /etc/apt/sources.list
+expect "#"
+
+spawn sudo aptitude update
+expect ":" { send "$PASS\r" }
+expect "Reading package lists... Done"
+
+spawn sudo aptitude safe-upgrade
+expect ":" { send "$PASS\r" }
+expect "continue?" { send "Y\r" }
+expect "Current status"
+
+spawn sudo aptitude install build-essential
+expect ":" { send "$PASS\r" }
+expect "continue?" { send "Y\r"}
+expect "Writing extended state information... Done"
+
+spawn sudo reboot
+expect ":" { send "$PASS\r" }

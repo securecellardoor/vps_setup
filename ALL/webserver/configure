@@ -1,0 +1,14 @@
+#!/usr/bin/expect --
+
+set timeout 600
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn sh -c "echo '$PASS' | sudo -S sed -i -e 's/ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf.d/security"
+expect ":" { send "$PASS\r" }
+
+spawn sudo /usr/sbin/apache2ctl graceful
+expect ":" { send "$PASS\r" }
+
+spawn curl -I http://103.1.184.46
+expect "200 OK"

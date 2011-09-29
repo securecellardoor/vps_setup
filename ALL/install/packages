@@ -1,0 +1,13 @@
+#!/usr/bin/expect --
+
+set timeout 600
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn sudo aptitude install apache2 apache2-prefork-dev build-essential curl libcurl4-openssl-dev libreadline-dev libxml libxml2-dev libxslt-dev git-core nano postgresql zlib1g-dev
+expect ":" { send "$PASS\r" }
+expect "continue?" { send "Y\r" }
+expect "Initializing package states... Done"
+
+spawn sudo sed -i -e "s/# set rebinddelete/set rebinddelete/" /etc/nanorc
+expect ":" { send "$PASS\r" }

@@ -1,0 +1,16 @@
+#! /bin/sh
+
+PASS=$1
+
+echo '---'
+cat /etc/lsb-release
+
+echo '---'
+free -m
+
+echo '---'
+echo $PASS | sudo -S /usr/sbin/locale-gen en_AU.UTF-8
+echo $PASS | sudo -S /usr/sbin/update-locale LANG=en_AU.UTF-8
+
+echo '---'
+/usr/bin/locale # this is showing the default POSIX but the en_AU.UTF-8 is there?
