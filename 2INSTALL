@@ -15,7 +15,14 @@ ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/mPanel-memory-graph $PAS
 
 
 ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/packages $PASS"
+
+#
+# https://github.com/sstephenson/rbenv
+#
+
 ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/ruby $PASS"
+
+
 ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/gems $PASS"
 
 

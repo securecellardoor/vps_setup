@@ -2,13 +2,18 @@
 
 PASS=$1
 
-## install rvm
-curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer && chmod +x rvm-installer && ./rvm-installer --version latest && rm rvm-installer
+## install rbenv
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> .bash_profile
+echo 'eval "$(rbenv init -)"' >> .bash_profile
 
-## install ruby 1.9.2
-/home/ben/.rvm/bin/rvm install 1.9.2
+git clone git://github.com/sstephenson/ruby-build.git
+export PREFIX="$HOME/.rbenv/"
+cd /home/ben/ruby-build
+/home/ben/ruby-build/install.sh
+cd ..
+rm -rf /home/ben/ruby-build
 
-## set the default ruby
-/home/ben/.rvm/bin/rvm use 1.9.2 --default
-
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
+export PATH="$HOME/.rbenv/bin:$PATH"
+rbenv install 1.9.2-p290 && rbenv rehash
+rbenv global 1.9.2-p290
