@@ -31,3 +31,10 @@ ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/gems $PASS"
 #
 
 ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/postgresql-conf $PASS"
+
+
+#
+# https://github.com/jdpace/PDFKit/wiki/Installing-WKHTMLTOPDF
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/wkhtmltopdf $PASS" # 32BIT OSES

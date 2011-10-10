@@ -1,0 +1,15 @@
+#!/usr/bin/expect --
+
+set timeout 600
+## set PASS to the first argument
+set PASS [lrange $argv 0 0]
+
+spawn sh -c "curl http://wkhtmltopdf.googlecode.com/files/wkhtmltopdf-0.9.9-static-i386.tar.bz2 -o /home/ben/wkhtmltopdf-0.9.9-static-i386.tar.bz2"
+expect "100 8031k"
+spawn tar xvjf wkhtmltopdf-0.9.9-static-i386.tar.bz2
+expect "wkhtmltopdf-i386"
+spawn rm wkhtmltopdf-0.9.9-static-i386.tar.bz2
+spawn sh -c "echo '$PASS' | sudo -S mv /home/ben/wkhtmltopdf-i386 /usr/local/bin/wkhtmltopdf"
+expect ":" { send "$PASS\r" }
+spawn sh -c "echo '$PASS' | sudo -S chmod +x /usr/local/bin/wkhtmltopdf"
+expect ":" { send "$PASS\r" }
