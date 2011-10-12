@@ -38,3 +38,11 @@ ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/postgresql-conf $PASS"
 #
 
 ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/wkhtmltopdf $PASS" # 32BIT OSES
+
+
+#
+# http://www.bookofzeus.com/articles/how-to-install-memcached-in-ubuntu/
+# http://www.exclusivetutorials.com/memcached-server-installation/
+#
+
+ssh -p 30000 -t ben@103.1.184.46 "/home/ben/ALL/install/memcached $PASS" # THIS ONE DOESN'T WORK - do it manually

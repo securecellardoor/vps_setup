@@ -1,0 +1,6 @@
+#! /bin/sh
+
+PASS=$1
+
+echo $PASS | sudo -S /etc/init.d/memcached start
+ps -eaf | grep memcached
