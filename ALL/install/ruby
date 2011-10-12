@@ -4,6 +4,8 @@ PASS=$1
 
 ## install rbenv
 git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo '. "$HOME/.bashrc"' >> .bash_profile
+echo '' >> .bash_profile
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> .bash_profile
 echo 'eval "$(rbenv init -)"' >> .bash_profile
 
