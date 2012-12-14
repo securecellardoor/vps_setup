@@ -4,9 +4,9 @@ set timeout 600
 ## set PASS to the first argument
 set PASS [lrange $argv 0 0]
 
-spawn createuser -PE scd
-expect ":" { send "yellow29\r" }
-expect ":" { send "yellow29\r" }
+spawn createuser -PE marilyn
+expect ":" { send "monroe!\r" }
+expect ":" { send "monroe!\r" }
 expect "(y/n)" { send "n\r" }
 expect "(y/n)" { send "y\r" }
 expect "(y/n)" { send "n\r" }

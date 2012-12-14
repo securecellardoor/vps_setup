@@ -8,7 +8,7 @@ spawn sudo /sbin/iptables -L
 expect ":" { send "$PASS\r" }
 expect "anywhere"
 
-spawn sudo cp /home/ben/ALL/webserver/servername.conf /etc/apache2/conf.d/servername.conf
+spawn sudo cp /home/carlo/ALL/webserver/servername.conf /etc/apache2/conf.d/servername.conf
 expect ":" { send "$PASS\r" }
 
 spawn sudo /usr/sbin/apache2ctl graceful
@@ -17,5 +17,5 @@ expect ":" { send "$PASS\r" }
 spawn /usr/sbin/apache2ctl configtest
 expect "Syntax OK"
 
-spawn curl -I http://103.1.184.46
+spawn curl -I http://192.168.1.6
 expect "200 OK"

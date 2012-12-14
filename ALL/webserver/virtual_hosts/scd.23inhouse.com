@@ -1,12 +1,12 @@
 <VirtualHost *:80>
-  ServerName scd.23inhouse.com
-  ServerAlias *.scd.23inhouse.com
+  ServerName marilyn.23inhouse.com
+  ServerAlias *.marilyn.23inhouse.com
 
   # RailsEnv staging # for Rails 2
   RackEnv staging
 
-  DocumentRoot /home/ben/public_html/secure_cellar_door_staging/current/public
-  <Directory /home/ben/public_html/secure_cellar_door_staging/current/public>
+  DocumentRoot /home/carlo/public_html/glamor_mommy_staging/current/public
+  <Directory /home/carlo/public_html/glamor_mommy_staging/current/public>
      AllowOverride all
      Options -MultiViews
   </Directory>
@@ -14,11 +14,11 @@
   RewriteEngine On
 
   # send www to non-www
-  RewriteCond %{HTTP_HOST} ^www\.scd\.23inhouse\.com
-  RewriteRule (.*) http://scd.23inhouse.com$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.marilyn\.23inhouse\.com
+  RewriteRule (.*) http://marilyn.23inhouse.com$1 [R=301,L]
 
   # Custom log file locations
-  ErrorLog  /home/ben/public_html/secure_cellar_door_staging/shared/log/error.log
-  CustomLog /home/ben/public_html/secure_cellar_door_staging/shared/log/access.log combined
+  ErrorLog  /home/carlo/public_html/glamor_mommy_staging/shared/log/error.log
+  CustomLog /home/carlo/public_html/glamor_mommy_staging/shared/log/access.log combined
 
 </VirtualHost>

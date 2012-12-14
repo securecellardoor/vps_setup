@@ -14,5 +14,5 @@ spawn ssh github.com
 expect "(yes/no)" { send "yes\r" }
 expect "successfully authenticated"
 
-spawn cat /home/ben/.ssh/id_rsa.pub
+spawn cat /home/carlo/.ssh/id_rsa.pub
 expect "23inhouse@gmail.com"

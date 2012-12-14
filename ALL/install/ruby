@@ -2,20 +2,20 @@
 
 PASS=$1
 
-## install rbenv
-git clone git://github.com/sstephenson/rbenv.git .rbenv
+## install rcarlov
+git clone git://github.com/sstephenson/rcarlov.git .rcarlov
 echo '. "$HOME/.bashrc"' >> .bash_profile
 echo '' >> .bash_profile
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> .bash_profile
-echo 'eval "$(rbenv init -)"' >> .bash_profile
+echo 'export PATH="$HOME/.rcarlov/bin:$PATH"' >> .bash_profile
+echo 'eval "$(rcarlov init -)"' >> .bash_profile
 
 git clone git://github.com/sstephenson/ruby-build.git
-export PREFIX="$HOME/.rbenv/"
-cd /home/ben/ruby-build
-/home/ben/ruby-build/install.sh
+export PREFIX="$HOME/.rcarlov/"
+cd /home/carlo/ruby-build
+/home/carlo/ruby-build/install.sh
 cd ..
-rm -rf /home/ben/ruby-build
+rm -rf /home/carlo/ruby-build
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-rbenv install 1.9.2-p290 && rbenv rehash
-rbenv global 1.9.2-p290
+export PATH="$HOME/.rcarlov/bin:$PATH"
+rcarlov install 1.9.2-p290 && rcarlov rehash
+rcarlov global 1.9.2-p290

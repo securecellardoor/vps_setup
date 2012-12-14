@@ -3,7 +3,7 @@
 PASS=$1
 
 echo $PASS | sudo -S /sbin/iptables -F
-echo $PASS | sudo -S cp /home/ben/ALL/setup/iptables.up.rules /etc/iptables.up.rules
+echo $PASS | sudo -S cp /home/carlo/ALL/setup/iptables.up.rules /etc/iptables.up.rules
 echo $PASS | sudo -S /sbin/iptables-restore < /etc/iptables.up.rules
 echo $PASS | sudo -S /sbin/iptables -L
 

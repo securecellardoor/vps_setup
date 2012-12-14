@@ -2,16 +2,16 @@
 
 PASS=$1
 
-mkdir -p /home/ben/public_html
-mkdir -p /home/ben/public_html/secure_cellar_door
-mkdir -p /home/ben/public_html/secure_cellar_door_demo
-mkdir -p /home/ben/public_html/secure_cellar_door_staging
+mkdir -p /home/carlo/public_html
+mkdir -p /home/carlo/public_html/glamor_mommy
+mkdir -p /home/carlo/public_html/glamor_mommy_demo
+mkdir -p /home/carlo/public_html/glamor_mommy_staging
 
-echo $PASS | sudo -S chmod -R a+rX /home/ben/public_html
-echo $PASS | sudo -S chmod a+rx /home/ben
-echo $PASS | sudo -S cp /home/ben/ALL/webserver/virtual_hosts/* /etc/apache2/sites-available/.
+echo $PASS | sudo -S chmod -R a+rX /home/carlo/public_html
+echo $PASS | sudo -S chmod a+rx /home/carlo
+echo $PASS | sudo -S cp /home/carlo/ALL/webserver/virtual_hosts/* /etc/apache2/sites-available/.
 
-echo $PASS | sudo -S a2ensite scd.23inhouse.com
+echo $PASS | sudo -S a2ensite marilyn.23inhouse.com
 echo $PASS | sudo -S a2ensite securecellardoor.com
-echo $PASS | sudo -S a2ensite securecellardoor.com.au
+echo $PASS | sudo -S a2ensite glamormommy.com
 bash --login -c "echo $PASS | sudo -S /etc/init.d/apache2 reload"

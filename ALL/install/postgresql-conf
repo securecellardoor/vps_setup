@@ -12,16 +12,16 @@ grep 'autovacuum =' /etc/postgresql/8.4/main/postgresql.conf
 # http://articles.slicehost.com/2009/5/7/postgresql-creating-and-deleting-roles
 #
 
-echo $PASS | sudo -S su postgres -c /home/ben/ALL/install/postgresql-users
+echo $PASS | sudo -S su postgres -c /home/carlo/ALL/install/postgresql-users
 
 #
 # http://articles.slicehost.com/2009/5/7/postgresql-creating-and-dropping-databases
 #
 
-echo $PASS | sudo -S su postgres -c /home/ben/ALL/install/postgresql-dbs
+echo $PASS | sudo -S su postgres -c /home/carlo/ALL/install/postgresql-dbs
 
 
-cp /home/ben/ALL/install/pgpass /home/ben/.pgpass
+cp /home/carlo/ALL/install/pgpass /home/carlo/.pgpass
 chmod 0600 ~/.pgpass
 
 echo $PASS | sudo -S /etc/init.d/postgresql-8.4 restart

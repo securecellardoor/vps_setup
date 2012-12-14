@@ -10,9 +10,9 @@ expect "Press ENTER to continue" { send "\r" }
 
 spawn sh -c "echo '$PASS' | sudo -S cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.backup.`date +%Y%m%d%H%M%S`"
 interact
-spawn sh -c "touch /home/ben/ALL/webserver/passenger.conf"
+spawn sh -c "touch /home/carlo/ALL/webserver/passenger.conf"
 interact
-spawn bash --login -c "passenger-install-apache2-module --snippet > /home/ben/ALL/webserver/passenger.conf"
+spawn bash --login -c "passenger-install-apache2-module --snippet > /home/carlo/ALL/webserver/passenger.conf"
 interact
-spawn sh -c "echo '$PASS' | sudo -S sh -c \"cat /home/ben/ALL/webserver/passenger.conf >> /etc/apache2/apache2.conf\""
+spawn sh -c "echo '$PASS' | sudo -S sh -c \"cat /home/carlo/ALL/webserver/passenger.conf >> /etc/apache2/apache2.conf\""
 interact

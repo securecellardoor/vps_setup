@@ -2,7 +2,7 @@
 
 PASS=$1
 
-createdb -O scd -E UTF8 secure_cellar_door_test
-createdb -O scd -E UTF8 secure_cellar_door_staging
-createdb -O scd -E UTF8 secure_cellar_door_demo
-createdb -O scd -E UTF8 secure_cellar_door
+createdb -O marilyn -E UTF8 glamor_mommy_test
+createdb -O marilyn -E UTF8 glamor_mommy_staging
+createdb -O marilyn -E UTF8 glamor_mommy_demo
+createdb -O marilyn -E UTF8 glamor_mommy

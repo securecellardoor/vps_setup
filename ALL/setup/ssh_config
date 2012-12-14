@@ -10,5 +10,5 @@ echo $PASS | sudo -S sed -i -e '$a\
 UseDNS no
 ' /etc/ssh/sshd_config
 echo $PASS | sudo -S sed -i -e '$a\
-AllowUsers ben
+AllowUsers carlo
 ' /etc/ssh/sshd_config

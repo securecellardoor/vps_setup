@@ -1,9 +1,9 @@
 #! /bin/sh
 
 PASS=$1
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.rcarlov/bin:$HOME/.rcarlov/shims:$PATH"
 
-echo "gem: --no-ri --no-rdoc" >> /home/ben/.gemrc
+echo "gem: --no-ri --no-rdoc" >> /home/carlo/.gemrc
 
-rbenv global 1.9.2-p290
+rcarlov global 1.9.2-p290
 gem install bundler passenger
